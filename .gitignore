@@ -219,4 +219,7 @@ __marimo__/
 
 DS_Store
 
-wifi_credentials.json
+.src_pico/wifi_credentials.json
+
+.vscode
+.micropico
