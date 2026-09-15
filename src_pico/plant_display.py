@@ -46,7 +46,7 @@ class PlantDisplay:
 
         if moisture < 30:
             status = "DRY"
-        elif moisture < 60:
+        elif moisture < 65:
             status = "OK"
         else:
             status = "GOOD"
