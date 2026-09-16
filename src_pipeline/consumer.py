@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 from utils.connect_postgres import query_db
 
 
-MQTT_BROKER ="192.168.0.100"
+MQTT_BROKER ="mosquitto"
 MQTT_PORT = 1883
 TOPIC = "plant-monitor/sensors"
 
@@ -18,7 +18,7 @@ def on_message(client, userdata, message):
 
     query_db(
         """
-        INSERT INTO sensor_reading (
+        INSERT INTO sensor_readings (
         time,
         moisture,
         distance_cm,
