@@ -220,6 +220,10 @@ __marimo__/
 DS_Store
 
 src_pico/wifi_credentials.json
+src_pico/mqtt_credentials.json
 
 .vscode
 .micropico
+
+!src_pico/lib/
+!src_pico/lib/**
