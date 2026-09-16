@@ -49,7 +49,7 @@ if __name__ == "__main__":
         CREATE TABLE IF NOT EXISTS sensor_readings (
             time TIMESTAMPTZ NOT NULL,
             moisture DOUBLE PRECISION,
-            distance_cm BDOUBLE PRECISION,
+            distance_cm DOUBLE PRECISION,
             plant_height_cm DOUBLE PRECISION,
             growth_cm DOUBLE PRECISION
         )
