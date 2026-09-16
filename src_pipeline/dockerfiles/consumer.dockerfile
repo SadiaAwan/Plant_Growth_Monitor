@@ -13,7 +13,6 @@ RUN pip install --no-cache-dir uv
 RUN uv sync --no-dev 
 
 ENV PYTHONUNBUFFERED=1
-
 # Start MQTT-consumer 
 CMD ["uv", "run", "python", "-u", "consumer.py"]
 
