@@ -11,7 +11,7 @@
         context: .
         dockerfile: dockerfiles/consumer.dockerfile
       env_file:
-       -.env
+       - .env
       depends_on:
         timescaledb:
           condition: service_healthy
