@@ -15,6 +15,8 @@ services:
     depends_on:
       timescaledb:
         condition: service_healthy
+      mosquitto:
+        condition: service_started
 
   timescaledb:
     image: timescale/timescaledb:latest-pg18
