@@ -1,46 +1,52 @@
-  services:
-    mosquitto:
-      container_name: mosquitto
-      image: eclipse-mosquitto 
-      ports:
-        - "1883:1883"
+services:
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+  
+  consumer:
+    container_name: consumer
+    build:
+      context: .
+      dockerfile: dockerfiles/consumer.dockerfile
+    env_file:
+      - .env
+    depends_on:
+      timescaledb:
+        condition: service_healthy
 
-    consumer:
-      container_name: consumer
-      build:
-        context: .
-        dockerfile: dockerfiles/consumer.dockerfile
-      env_file:
-       - .env
-      depends_on:
-        timescaledb:
-          condition: service_healthy
+  timescaledb:
+    image: timescale/timescaledb:latest-pg18
+    container_name: timescaledb
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescale_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
-    timescaledb:
-      image: timescale/timescaledb:latest-pg18
-      container_name: timescaledb
-      environment:
-        POSTGRES_DB: ${POSTGRES_DB}
-        POSTGRES_USER: ${POSTGRES_USER}
-        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      ports:
-        - "5432:5432"
-      volumes:
-        - timescale_data:/var/lib/postgresql
-      healthcheck:
-        test: ["CMD-SHELL", "pg-isready -U ${POSTGRES_USER} -d {POSTGRES_DB}"]
-        interval: 5s
-        timeout: 5s
-        retries: 10
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      timescaledb:
+        condition: service_healthy
 
-
-  volumes:
-    timescale_data:
-
-
-
-
-
-
-
-    
+volumes:
+  timescale_data:
+  grafana_data:
