@@ -51,7 +51,7 @@ def set_moisture_color(moisture):
         print("STATUS: DRY")
         # set_color(0, 65535)
 
-    elif moisture < 70:
+    elif moisture < 65:
         print("STATUS: OK")
         # set_color(0, 0)
 
