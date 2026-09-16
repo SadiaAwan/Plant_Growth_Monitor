@@ -18,7 +18,7 @@ def on_message(client, userdata, message):
 
     query_db(
         """
-        INSERT INTO sensor_reading (
+        INSERT INTO sensor_readings (
         time,
         moisture,
         distance_cm,
