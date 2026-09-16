@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 from utils.connect_postgres import query_db
 
 
-MQTT_BROKER ="192.168.0.100"
+MQTT_BROKER ="mosquitto"
 MQTT_PORT = 1883
 TOPIC = "plant-monitor/sensors"
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         CREATE TABLE IF NOT EXISTS sensor_readings (
             time TIMESTAMPTZ NOT NULL,
             moisture DOUBLE PRECISION,
-            distance_cm BDOUBLE PRECISION,
+            distance_cm DOUBLE PRECISION,
             plant_height_cm DOUBLE PRECISION,
             growth_cm DOUBLE PRECISION
         )
