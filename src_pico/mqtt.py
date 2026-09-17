@@ -2,18 +2,26 @@ from lib.umqtt.simple import MQTTClient
 import json
 
 
-MQTT_BROKER = "192.168.0.100"
+# MQTT_BROKER = "AZURE_PUBLIC_ID"
+MQTT_BROKER = "192.168.0.5"
 MQTT_PORT = 1883
 
 CLIENT_ID = "plant-monitor-pico"
 TOPIC = b"plant-monitor/sensors"
 
+with open("mqtt_credentials.json") as file:
+    credentials = json.load(file)
+
+MQTT_USER = credentials.get("MQTT_USER")
+MQTT_PASSWORD = credentials.get("MQTT_PASSWORD")
 
 def connect_mqtt():
     client = MQTTClient(
         client_id=CLIENT_ID,
         server=MQTT_BROKER,
-        port=MQTT_PORT
+        port=MQTT_PORT,
+        user=MQTT_USER,
+        password=MQTT_PASSWORD
     )
 
     client.connect()
