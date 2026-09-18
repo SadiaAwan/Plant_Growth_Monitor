@@ -11,7 +11,7 @@ i2c = I2C(
 
 SENSOR_ADDR = 0x36
 DRY_VALUE = 325
-WET_VALUE = 1015
+WET_VALUE = 760
 
 # RGB LED
 red = PWM(Pin(13))
@@ -49,12 +49,12 @@ def set_color(r, g):
 def set_moisture_color(moisture):
     if moisture < 30:
         print("STATUS: DRY")
-        # set_color(0, 65535)
+        set_color(0, 65535)
 
     elif moisture < 65:
         print("STATUS: OK")
-        # set_color(0, 0)
+        set_color(0, 0)
 
     else:
         print("STATUS: GOOD")
-        # set_color(65535, 0)
+        set_color(65535, 0)

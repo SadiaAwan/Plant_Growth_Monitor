@@ -4,8 +4,9 @@ from machine import Pin
 trigger = Pin(17, Pin.OUT)
 echo = Pin(16, Pin.IN)
 
-SENSOR_HEIGHT_CM = 40.0
-INITIAL_PLANT_HEIGHT_CM = 8.0
+SENSOR_HEIGHT_CM = 30.0
+POT_HEIGHT_CM = 6.0
+INITIAL_PLANT_HEIGHT_CM = 13.0
 
 def read_distance():
     trigger.low()
@@ -29,8 +30,8 @@ def read_distance():
     return distance_cm
 
 def calculate_plant_height(distance_cm):
-    plant_height = SENSOR_HEIGHT_CM - distance_cm
-
+    plant_height = SENSOR_HEIGHT_CM - distance_cm - POT_HEIGHT_CM
+    
     return max(0, plant_height)
 
 def calculate_growth(plant_height):
