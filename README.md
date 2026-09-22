@@ -98,6 +98,7 @@ The demonstrated design uses the following types of components:
 
 ## Repository structure
 
+```text
 Plant_Growth_Monitor/
 ├── simulation/                 # Wokwi simulation files
 ├── src_pico/
@@ -121,6 +122,7 @@ Plant_Growth_Monitor/
 ├── .gitignore
 ├── README.md
 └── way_of_working.md
+```
 
 
 ## Dashborard
