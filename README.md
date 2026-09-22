@@ -97,8 +97,7 @@ The demonstrated design uses the following types of components:
 - breadboard, jumper wires, and resistors
 
 ## Repository structure
-
-```text
+```
 Plant_Growth_Monitor/
 ├── simulation/                 # Wokwi simulation files
 ├── src_pico/
