@@ -6,7 +6,7 @@ echo = Pin(16, Pin.IN)
 
 SENSOR_HEIGHT_CM = 30.0
 POT_HEIGHT_CM = 6.0
-INITIAL_PLANT_HEIGHT_CM = 13.0
+INITIAL_PLANT_HEIGHT_CM = 7.0
 
 def read_distance():
     trigger.low()
